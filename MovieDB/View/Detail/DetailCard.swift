@@ -9,15 +9,26 @@
 import SwiftUI
 
 struct DetailCard: View {
-    private let viewModel: DetailCardVM
+    //@EnvironmentObject var viewModel: DetailVM
+    @ObservedObject var viewModel: DetailVM
+
     
-    
-    init(viewModel: DetailCardVM) {
-        self.viewModel = viewModel
-        
+    init(viewModle: DetailVM, movieId: String) {
+//        print(movieId)
+//        print(viewModel.movieId.count)
+        self.viewModel = viewModle
+        self.viewModel.fetchDetail(forId: movieId)
+    //viewModel.fetchDetail(forId: movieId)
     }
     
     var body: some View {
-        Text("\(self.viewModel.audience ?? "N/A")")
+        VStack {
+            if self.viewModel.dataSource != nil {
+                Text("\(self.viewModel.dataSource?.audience ?? "N/a")")
+            }
+            else {
+                Text("Loading")
+            }
+        }
     }
 }

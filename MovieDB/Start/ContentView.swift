@@ -20,7 +20,9 @@ struct ContentView: View {
             if self.detailVM.movieId.count == 0 && self.summaryVM.movieId.count > 0{
                     Text("").opacity(0).onAppear(perform: {
                         self.detailVM.movieId = self.summaryVM.movieId
+                        //self.detailVM.fetchDetail()
                     })
+                
                 
             }
 //            if isLoading {
