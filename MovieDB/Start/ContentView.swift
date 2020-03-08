@@ -17,14 +17,14 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            if self.detailVM.movieId.count == 0 && self.summaryVM.movieId.count > 0{
-                    Text("").opacity(0).onAppear(perform: {
-                        self.detailVM.movieId = self.summaryVM.movieId
-                        //self.detailVM.fetchDetail()
-                    })
-                
-                
-            }
+//            if self.detailVM.movieId.count == 0 && self.summaryVM.movieId.count > 0{
+//                    Text("").opacity(0).onAppear(perform: {
+////                        self.detailVM.movieId = self.summaryVM.movieId
+//                        //self.detailVM.fetchDetail()
+//                    })
+//                
+//                
+//            }
 //            if isLoading {
 //            Text("Loading\(detailVM.movieId.count)")
 //                .onAppear(perform: {

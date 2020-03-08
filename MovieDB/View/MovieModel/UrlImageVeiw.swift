@@ -17,7 +17,7 @@ struct UrlImageVeiw: View {
     }
     
     var body: some View {
-        Image(uiImage: urlImageModel.image ?? UrlImageVeiw.defaultImage!)
+        Image(uiImage: urlImageModel.image ?? UrlImageVeiw.defaultImage!).resizable()
     }
 }
 

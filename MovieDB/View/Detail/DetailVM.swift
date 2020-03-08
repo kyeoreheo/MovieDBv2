@@ -10,20 +10,20 @@ import Foundation
 import Combine
 
 class DetailVM: ObservableObject {
-    @Published var movieId: [String] = []// [String] = []
+    @Published var movieId: String = ""// [String] = []
     @Published var dataSource: DetailCardVM?
 
     private let movieFetcher: MovieFetchable
     private var disposables = Set<AnyCancellable>()
     
 
-    init(movieFetcher: MovieFetcher, movieId: [String]) {
+    init(movieFetcher: MovieFetcher, movieId: String = "") {
         self.movieFetcher = movieFetcher
-        self.movieId = movieId
+        fetchDetail(forId: movieId)
     }
 
-    //one to one fetch
     func fetchDetail(forId id: String) {
+        print("I am \(self), \(id)")
         movieFetcher.movieDetail(forId: id)
         .map { DetailCardVM.init(item: $0) }
         .receive(on: DispatchQueue.main)

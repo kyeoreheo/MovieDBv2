@@ -7,10 +7,14 @@
 //
 
 import SwiftUI
+import QGrid
 
 struct DetailView: View {
     @EnvironmentObject var viewModel: DetailVM
-    @EnvironmentObject var movieModel: SummaryVM
+    @EnvironmentObject var supportModel: SummaryVM
+    @State var cards: [DetailCard] = []
+    @State var count: Int = 0
+    
     //let movieId: [String]
     
     init(viewModel: DetailVM) {
@@ -18,24 +22,18 @@ struct DetailView: View {
     }
     
     var body: some View {
-     ScrollView (showsIndicators: false){
-           VStack {
-            
-           
-//            if viewModel.dataSource.count > 0 {
-                ForEach (0..<movieModel.movieId.count) {
-                    DetailCard(viewModle: self.viewModel, movieId: self.movieModel.movieId[$0])
-                    //DetailCard(viewModel: self.viewModel.dataSource[$0])
+        ScrollView (.vertical, showsIndicators: false){
+            VStack  {
+                ForEach(0..<(supportModel.movieId.count/2)) { vIndex in
+                    HStack{
+                        ForEach (vIndex..<vIndex + 2) { hIndex in
+                            DetailCard(viewModle: self.viewModel, supportModel: self.supportModel, index: hIndex + vIndex)
+                        }
                     }
-//                } else {
-//                    Text("Hi")
-//                    .frame(width: 500, height: 300)
-//                }
-           }.onAppear(perform: {
-                //self.viewModel.fetchDetail()
-           })
-       }
-
+                }
+            }.padding()
+        
+        }
     }
 }
 

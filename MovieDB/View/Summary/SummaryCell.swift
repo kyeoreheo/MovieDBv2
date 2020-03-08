@@ -19,8 +19,6 @@ struct SummaryCell: View {
         VStack (alignment: .center) {
             ZStack {
                 MyColor.lightlightGray.edgesIgnoringSafeArea(.all) //set background
-
-                
                 HStack(alignment: .top, spacing: 20) {
                     UrlImageVeiw(urlString: self.viewModel.thumb)
                     .frame(width: 99, height: 141)

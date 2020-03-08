@@ -8,27 +8,28 @@
 
 import SwiftUI
 
-struct DetailCard: View {
-    //@EnvironmentObject var viewModel: DetailVM
-    @ObservedObject var viewModel: DetailVM
-
+struct DetailCard: View, Identifiable {
+    var id = UUID()
     
-    init(viewModle: DetailVM, movieId: String) {
-//        print(movieId)
-//        print(viewModel.movieId.count)
-        self.viewModel = viewModle
-        self.viewModel.fetchDetail(forId: movieId)
-    //viewModel.fetchDetail(forId: movieId)
+    @ObservedObject var viewModel: DetailVM
+    let thumb: String
+    
+    init(viewModle: DetailVM, supportModel: SummaryVM, index: Int) {
+        self.viewModel = DetailVM(movieFetcher: MovieFetcher(), movieId: supportModel.movieId[index])
+        self.thumb = supportModel.dataSource[index].thumb
     }
     
     var body: some View {
-        VStack {
-            if self.viewModel.dataSource != nil {
+        ZStack {
+            MyColor.lightlightGray.edgesIgnoringSafeArea(.all) //set background
+            VStack {
                 Text("\(self.viewModel.dataSource?.audience ?? "N/a")")
-            }
-            else {
-                Text("Loading")
+                    .frame(width:200, height: 20)
+                UrlImageVeiw(urlString: self.thumb)
+                .frame(width: 200, height: 300)
             }
         }
+        .frame(width: 200, height: 300)
+        //.padding()
     }
 }
