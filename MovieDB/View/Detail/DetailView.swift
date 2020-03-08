@@ -7,33 +7,47 @@
 //
 
 import SwiftUI
-import QGrid
 
 struct DetailView: View {
-    @EnvironmentObject var viewModel: DetailVM
-    @EnvironmentObject var supportModel: SummaryVM
-    @State var cards: [DetailCard] = []
-    @State var count: Int = 0
+    @ObservedObject var summaryModel: SummaryVM
+    @ObservedObject var detailModel: DetailVM
+    @ObservedObject var commentModel: CommentVM
     
-    //let movieId: [String]
+    @State var onScreen = false
     
-    init(viewModel: DetailVM) {
+    let index: Int
+    init(summaryModel: SummaryVM, detailModel: DetailVM, commentModel: CommentVM, index: Int) {
+        self.index = index
+        self.summaryModel = summaryModel
+        self.detailModel = detailModel
+        self.commentModel = commentModel
+        
+        self.detailModel = DetailVM(movieFetcher: MovieFetcher(), movieId: self.summaryModel.movieId[index])
+        //self.viewModel = DetailVM(movieFetcher: MovieFetcher(), movieId: supportModel.movieId[index])
 
     }
     
     var body: some View {
-        ScrollView (.vertical, showsIndicators: false){
-            VStack  {
-                ForEach(0..<(supportModel.movieId.count/2)) { vIndex in
-                    HStack{
-                        ForEach (vIndex..<vIndex + 2) { hIndex in
-                            DetailCard(viewModle: self.viewModel, supportModel: self.supportModel, index: hIndex + vIndex)
-                        }
-                    }
-                }
-            }.padding()
+//        GeometryReader { geo in
+
+            ZStack {
+                UrlImageVeiw(urlString: self.summaryModel.dataSource[self.index].thumb)
+                    .edgesIgnoringSafeArea(.all)
+                    .blur(radius: self.onScreen ? 10 : 0)
+                    .offset(y:-150)
+                    .animation(.interpolatingSpring(mass: 1, stiffness: 1, damping: 5.0, initialVelocity: 1))
+                //ScrollView (showsIndicators: false){
+                DetailCardView(userRating: self.summaryModel.dataSource[self.index].userRating,
+                            director: self.detailModel.dataSource?.director ?? "loading",
+                            genre: self.detailModel.dataSource?.genre ?? "loading",
+                            cast: self.detailModel.dataSource?.cast ?? "loading",
+                            synopsis: self.detailModel.dataSource?.synopsis ?? "loading")
+
+                    
+
+            }
+            .onAppear(perform: { self.onScreen.toggle()})
         
-        }
     }
 }
 

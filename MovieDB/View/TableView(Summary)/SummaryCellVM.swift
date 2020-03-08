@@ -17,11 +17,11 @@ struct SummaryCellVM {
     }
     
     var title: String {
-        return String(item.title)
+        return item.title
     }
     
     var thumb: String {
-        return String(item.thumb)
+        return item.thumb
     }
     
     var grade: String {
@@ -32,11 +32,20 @@ struct SummaryCellVM {
         return String(format: "%.1f", item.user_rating)
     }
     
+    var criticsRating: String {
+        return String(format: "%.1f", item.reservation_rate)
+    }
+    
+    var rank: String {
+        return String(item.reservation_grade)
+    }
+
     var movieId: String {
-        return String(item.id)
+        return item.id
     }
     
     var releaseDate: String {
         return item.date
     }
+    
 }

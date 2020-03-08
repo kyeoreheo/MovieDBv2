@@ -16,12 +16,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         let movieFetcher = MovieFetcher()
+        let commentVM = CommentVM(movieFetcher: movieFetcher)
         let summaryVM = SummaryVM(movieFetcher: movieFetcher)
         let detailVM = DetailVM(movieFetcher: movieFetcher)
+        let currentMovie = CurrentMovie()
         
         let contentView = ContentView()
             .environmentObject(summaryVM)
             .environmentObject(detailVM)
+            .environmentObject(commentVM)
+            .environmentObject(currentMovie)
 
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)

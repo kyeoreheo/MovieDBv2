@@ -1,33 +1,28 @@
 //
-//  SummaryVM.swift
+//  CommentVM.swift
 //  MovieDB
 //
-//  Created by Kyo on 3/6/20.
+//  Created by Kyo on 3/8/20.
 //  Copyright © 2020 Kyo. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 import Combine
 
-class SummaryVM: ObservableObject {
-    @Published var type: Int = 0
-    @Published var dataSource: [SummaryCellVM] = []
-    @Published var movieId: [String] = []
-    
+class CommentVM: ObservableObject {
+    @Published var dataSource: [CommentCellVM] = []
+
     private let movieFetcher: MovieFetchable
     private var disposables = Set<AnyCancellable>()
-    
-    init(movieFetcher: MovieFetchable) {
+
+    init(movieFetcher: MovieFetcher, movieId: String = "") {
         self.movieFetcher = movieFetcher
-        $type
-        .dropFirst(1)
-        .sink(receiveValue: fetchSummary(forType: ))
-        .store(in: &disposables)
+        fetchComment(forId: movieId)
     }
     
-    func fetchSummary(forType type: Int) {
-        movieFetcher.movieSummary(forType: type)
-        .map { $0.movies.map(SummaryCellVM.init) }
+    func fetchComment(forId id: String) {
+        movieFetcher.comment(forId: id)
+            .map { $0.comments.map(CommentCellVM.init) }
         .receive(on: DispatchQueue.main)
         .sink(
             receiveCompletion: { [weak self] value in
@@ -42,14 +37,7 @@ class SummaryVM: ObservableObject {
             receiveValue: { [weak self] result in
                 guard let strongSelf = self else { return }
                 strongSelf.dataSource = result
-                strongSelf.movieIdGenerator()
             })
             .store(in: &disposables)
-    }
-    
-    func movieIdGenerator() {
-        dataSource.forEach {
-            movieId.append($0.movieId)
-        }
     }
 }

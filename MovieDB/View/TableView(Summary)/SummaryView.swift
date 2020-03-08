@@ -11,9 +11,10 @@ import SwiftUI
 struct SummaryView: View {
     @ObservedObject var viewModel: SummaryVM
     
-    init(viewModel: SummaryVM) {
-        self.viewModel = viewModel
-    }
+    
+//    init(viewModel: SummaryVM) {
+//        self.viewModel = viewModel
+//    }
     var body: some View {
         ScrollView (showsIndicators: false){
             VStack {

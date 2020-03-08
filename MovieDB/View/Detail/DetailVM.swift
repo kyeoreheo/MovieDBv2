@@ -10,7 +10,6 @@ import Foundation
 import Combine
 
 class DetailVM: ObservableObject {
-    @Published var movieId: String = ""// [String] = []
     @Published var dataSource: DetailCardVM?
 
     private let movieFetcher: MovieFetchable
@@ -23,13 +22,12 @@ class DetailVM: ObservableObject {
     }
 
     func fetchDetail(forId id: String) {
-        print("I am \(self), \(id)")
         movieFetcher.movieDetail(forId: id)
         .map { DetailCardVM.init(item: $0) }
         .receive(on: DispatchQueue.main)
         .sink(
-            receiveCompletion: { [weak self] value in
-                guard let strongSelf = self else { return }
+            receiveCompletion: { value in//[weak self] value in
+//                guard let strongSelf = self else { return }
                 switch value {
                 case .failure:
                     print("couldn't load movie")
@@ -42,7 +40,6 @@ class DetailVM: ObservableObject {
                 strongSelf.dataSource = result
             })
             .store(in: &disposables)
-
     }
 
 }

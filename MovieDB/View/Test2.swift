@@ -9,8 +9,9 @@
 import SwiftUI
 
 struct Test2: View {
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("HI:lskflskfjslkfjsfklsjflksHI:lskflskfjslkfjsfklsjflksHI:lskflskfjslkfjsfklsjflksHI:lskflskfjslkfjsfklsjflksHI:lskflskfjslkfjsfklsjflksHI:lskflskfjslkfjsfklsjflksHI:lskflskfjslkfjsfklsjflksHI:lskflskfjslkfjsfklsjflksHI:lskflskfjslkfjsfklsjflksHI:lskflskfjslkfjsfklsjflksHI:lskflskfjslkfjsfklsjflksHI:lskflskfjslkfjsfklsjflksHI:lskflskfjslkfjsfklsjflksHI:lskflskfjslkfjsfklsjflksHI:lskflskfjslkfjsfklsjflksHI:lskflskfjslkfjsfklsjflksHI:lskflskfjslkfjsfklsjflksfsf")
     }
 }
 

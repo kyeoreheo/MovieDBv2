@@ -3,50 +3,32 @@ import SwiftUI
 struct ContentView: View {
     let fetcher = MovieFetcher()
     @EnvironmentObject var summaryVM: SummaryVM
-    //@ObservedObject var summaryVM: SummaryVM
     @EnvironmentObject var detailVM: DetailVM
+    @EnvironmentObject var commentVM: CommentVM
+    @EnvironmentObject var currentMovie: CurrentMovie
     
     @State var section = 0
     @State var isLoading = true
+    @State var showignDetail = false
     
     init() {
 
-
+        //UITabBar.appearance().backgroundColor = UIColor.black
     }
 
     
     var body: some View {
         NavigationView {
-//            if self.detailVM.movieId.count == 0 && self.summaryVM.movieId.count > 0{
-//                    Text("").opacity(0).onAppear(perform: {
-////                        self.detailVM.movieId = self.summaryVM.movieId
-//                        //self.detailVM.fetchDetail()
-//                    })
-//                
-//                
-//            }
-//            if isLoading {
-//            Text("Loading\(detailVM.movieId.count)")
-//                .onAppear(perform: {
-//                    self.summaryVM.fetchSummary(forType: 0)
-//                    withAnimation {
-//                        self.isLoading.toggle()
-//                    }
-//                })
-//            }
              TabView {  //selection: self.$selection
                 SummaryView(viewModel: summaryVM)
-                .tabItem({Text("TableView")})
+                    .tabItem({Text("TableView").modifier(GeneralText(size:25))})
                 .tag("TableView")
-////
-                DetailView(viewModel: detailVM)
-                .tabItem({Text("Detail")})
-                .tag("Dtail")
-//
-//                SummaryView(viewModel: summaryVM)
-//                .tabItem({Text("TableView")})
-//                .tag("TableView")
+                
+                CollectionView(viewModel: summaryVM)
+                    .tabItem({Text("CollectionView").modifier(GeneralText(size:25))})
+                .tag("CollectionView")
             }
+             .accentColor(Color.black)
             .padding(.top, -60)
 
             .navigationBarTitle("\(summaryVM.movieId.count)")
@@ -71,12 +53,24 @@ struct ContentView: View {
                             Text("Latest")
                             .modifier(GeneralText(color:Color.white))
                         }
+                        Button(action: {
+                            self.showignDetail.toggle()
+                        }) {
+                            Text("BTN")
+                        }
                     }
                 }
             )
         }
+        .sheet(isPresented: self.$currentMovie.showingDetail ) {
+            DetailView(summaryModel: self.summaryVM,
+                       detailModel: self.detailVM,
+                       commentModel: self.commentVM,
+                       index: self.currentMovie.index).environmentObject(self.currentMovie)
+        }
     .onAppear(perform: {
         self.summaryVM.fetchSummary(forType: 0)
     })
+        
     }
 }

@@ -8,28 +8,22 @@
 
 import SwiftUI
 
-struct DetailCard: View, Identifiable {
-    var id = UUID()
-    
+struct DetailCard: View {
     @ObservedObject var viewModel: DetailVM
-    let thumb: String
+    @ObservedObject var supportModel: SummaryVM
+    let index: Int
     
     init(viewModle: DetailVM, supportModel: SummaryVM, index: Int) {
         self.viewModel = DetailVM(movieFetcher: MovieFetcher(), movieId: supportModel.movieId[index])
-        self.thumb = supportModel.dataSource[index].thumb
+        self.supportModel = supportModel
+        self.index = index
     }
     
     var body: some View {
-        ZStack {
-            MyColor.lightlightGray.edgesIgnoringSafeArea(.all) //set background
-            VStack {
-                Text("\(self.viewModel.dataSource?.audience ?? "N/a")")
-                    .frame(width:200, height: 20)
-                UrlImageVeiw(urlString: self.thumb)
-                .frame(width: 200, height: 300)
-            }
+        VStack {
+            Text("HI")
         }
-        .frame(width: 200, height: 300)
-        //.padding()
     }
 }
+
+
