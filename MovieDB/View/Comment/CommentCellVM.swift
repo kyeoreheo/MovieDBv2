@@ -5,34 +5,17 @@
 //  Created by Kyo on 3/8/20.
 //  Copyright © 2020 Kyo. All rights reserved.
 //
-
 import SwiftUI
 
 struct CommentCellVM {
     private let item: CommentResponse.Comment
     
     init(item: CommentResponse.Comment) {
-        self.item = item
-    }
+          self.item = item
+      }
     
-    var rating: String {
-        return String(format: "%1.f",item.rating)
-    }
-    
-    var comment: String {
-        return String(item.contents)
-    }
-    
-    var timestamp: Double {
-        return item.timestamp
-    }
-    
+    var rating: String { String(format: "%1.f",item.rating) }
+    var comment: String { String(item.contents) }
+    var timestamp: Double { item.timestamp }
     var writer: String { item.writer }
-    
-    //var movieId: String { item.movie_id }
-//    var rating: Int
-//    var contents: String
-//    var timestamp: Int
-//    var movie_id: String
-//    var writer: String
 }

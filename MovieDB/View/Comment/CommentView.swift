@@ -13,18 +13,15 @@ struct CommentView: View {
     
     var body: some View {
         ScrollView (showsIndicators: false) {
-            Text("\(self.commentModel.dataSource.count)")
-            ForEach(0..<commentModel.dataSource.count) {
-                //Text(self.commentModel.dataSource[$0].movieId)
-                CommentCell(wiriter: self.commentModel.dataSource[$0].writer,
-                            rating: self.commentModel.dataSource[$0].rating,
-                            timestamp: self.commentModel.dataSource[$0].timestamp,
-                            comment: self.commentModel.dataSource[$0].comment)
+            if self.commentModel.dataSource.count > 0 {
+                ForEach(0..<commentModel.dataSource.count) {
+                    CommentCell(viewModel: self.commentModel.dataSource[$0])
+                }
+            } else {
+                Text("loading comments")
+                    .frame(width: 400)
+                    .modifier(GeneralText())
             }
-
-
-
-
         }.frame(height: 400)
     }
 }

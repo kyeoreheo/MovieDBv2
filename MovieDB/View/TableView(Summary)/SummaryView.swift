@@ -17,7 +17,6 @@ struct SummaryView: View {
                 if viewModel.dataSource.count > 0 {
                     ForEach (0..<viewModel.dataSource.count) {
                         SummaryCell(viewModel: self.viewModel.dataSource[$0], index: $0)
-                        
                     }
                 } else {
                     Text("Loading...")

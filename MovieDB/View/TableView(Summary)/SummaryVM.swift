@@ -5,7 +5,6 @@
 //  Created by Kyo on 3/6/20.
 //  Copyright © 2020 Kyo. All rights reserved.
 //
-
 import Foundation
 import Combine
 
@@ -43,8 +42,9 @@ class SummaryVM: ObservableObject {
                 guard let strongSelf = self else { return }
                 strongSelf.dataSource = result
                 strongSelf.movieIdGenerator()
-            })
-            .store(in: &disposables)
+            }
+        )
+        .store(in: &disposables)
     }
     
     func movieIdGenerator() {

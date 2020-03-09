@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    let fetcher = MovieFetcher()
     @EnvironmentObject var summaryVM: SummaryVM
     @EnvironmentObject var detailVM: DetailVM
     @EnvironmentObject var commentVM: CommentVM
@@ -15,16 +14,13 @@ struct ContentView: View {
     @State var recommendedPage = false
     @State var latestPage = false
 
-    
     init() {
-
-        //UITabBar.appearance().backgroundColor = UIColor.black
     }
 
     
     var body: some View {
         NavigationView {
-             TabView {  //selection: self.$selection
+             TabView {
                 SummaryView(viewModel: summaryVM)
                     .tabItem({Text("TableView").modifier(GeneralText(size:25))})
                     .tag("TableView")
@@ -34,10 +30,8 @@ struct ContentView: View {
                     .modifier(GeneralText(size:25))})
                     .tag("CollectionView")
              }
-             .accentColor(Color.black)
              .padding(.top, -60)
-                
-
+             .accentColor(Color.black)
              .navigationBarTitle("MovieDB")
              .navigationBarItems(trailing:
                 HStack{
@@ -52,10 +46,10 @@ struct ContentView: View {
                             }
                         }) {
                             Text("Popular")
+                                .padding(5)
                                 .modifier(GeneralText(color: self.popularPage ? .black : .white))
-                            .padding(5)
                                 .background(self.popularPage ? Color.white : MyColor.darkGray)
-                            .cornerRadius(10)
+                                .cornerRadius(10)
                         }
                         
                         Button(action: {
@@ -68,10 +62,10 @@ struct ContentView: View {
                             }
                         }) {
                             Text("Recommended")
-                            .modifier(GeneralText(color: self.recommendedPage ? .black : .white))
-                            .padding(5)
+                                .padding(5)
+                                .modifier(GeneralText(color: self.recommendedPage ? .black : .white))
                                 .background(self.recommendedPage ? Color.white : MyColor.darkGray)
-                            .cornerRadius(10)
+                                .cornerRadius(10)
                         }
                         
                         Button(action: {
@@ -84,10 +78,10 @@ struct ContentView: View {
                             }
                         }) {
                             Text("Latest")
-                            .modifier(GeneralText(color: self.latestPage ? .black : .white))
-                            .padding(5)
+                                .padding(5)
+                                .modifier(GeneralText(color: self.latestPage ? .black : .white))
                                 .background(self.latestPage ? Color.white : MyColor.darkGray)
-                            .cornerRadius(10)
+                                .cornerRadius(10)
                         }
                     }
                 }
@@ -97,11 +91,12 @@ struct ContentView: View {
             DetailView(summaryModel: self.summaryVM,
                        detailModel: self.detailVM,
                        commentModel: self.commentVM,
-                       index: self.currentMovie.index).environmentObject(self.currentMovie)
+                       index: self.currentMovie.index)
+                .environmentObject(self.currentMovie)
         }
-    .onAppear(perform: {
-        self.summaryVM.fetchSummary(forType: 0)
-    })
-        
+        .onAppear(perform: {
+            // as soon as this View on screen
+            self.summaryVM.fetchSummary(forType: 0)
+        })
     }
 }

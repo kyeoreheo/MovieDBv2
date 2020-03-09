@@ -5,10 +5,7 @@
 //  Created by Kyo on 3/7/20.
 //  Copyright © 2020 Kyo. All rights reserved.
 //
-
-import Foundation
 import SwiftUI
-//static let _ : Color = Color (red:, green:, blue: )
 
 struct MyColor {
     static let lightlightGray: Color = Color(red: 242 / 255, green: 242 / 255, blue: 242 / 255)
@@ -27,5 +24,4 @@ struct MyColor {
 
     static let grass: Color = Color(red: 58 / 255, green: 199 / 255, blue: 36 / 255)
     static let green: Color = Color(red: 68 / 255, green: 163 / 255, blue: 66 / 255)
-
 }

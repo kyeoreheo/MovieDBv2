@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CollectionView: View {
     @EnvironmentObject var viewModel: SummaryVM
+    
     @State var count: Int = 0
     
     init(viewModel: SummaryVM) {
@@ -25,7 +26,8 @@ struct CollectionView: View {
                         }
                     }
                 }
-            }.padding()
+            }
+            .padding()
         }
     }
 }

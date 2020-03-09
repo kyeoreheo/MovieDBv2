@@ -10,7 +10,6 @@ import SwiftUI
 
 struct SummaryCell: View {
     @EnvironmentObject var currentMovie: CurrentMovie
-    //@ObservedObject var summaryVM: SummaryVM
     let index: Int
 
     private let viewModel: SummaryCellVM
@@ -27,9 +26,8 @@ struct SummaryCell: View {
                 
                 HStack(alignment: .top, spacing: 20) {
                     UrlImageVeiw(urlString: self.viewModel.thumb)
-                    .frame(width: 99, height: 141)
-                    .cornerRadius(2)
-
+                        .frame(width: 99, height: 141)
+                        .cornerRadius(2)
                     
                     VStack(alignment: .leading) {
                         Text(self.viewModel.title)
@@ -46,16 +44,16 @@ struct SummaryCell: View {
                             HStack(spacing: 20) {
                                 
                                 RankIcon(self.viewModel.rank)
-                                .scaleEffect(1)
-                                .offset(y:-4)
+                                    .scaleEffect(1)
+                                    .offset(y:-4)
 
                                 StarIcon(self.viewModel.userRating)
-                                .scaleEffect(1)
-                                .offset(y:-4)
+                                    .scaleEffect(1)
+                                    .offset(y:-4)
                                 
                                 Image(self.viewModel.grade)
-                                .resizable()
-                                .frame(width: 50, height: 50)
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
                             }
                             .padding(.bottom,10)
                         }

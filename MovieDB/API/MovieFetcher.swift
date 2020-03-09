@@ -5,12 +5,10 @@
 //  Created by Kyo on 3/6/20.
 //  Copyright © 2020 Kyo. All rights reserved.
 //
-
 import Foundation
 import Combine
 
 protocol MovieFetchable {
-    //-1 popularity -2 curation -3 release date
     func movieSummary (forType type: Int) -> AnyPublisher<MovieSummaryResponse, MovieError>
     func movieDetail (forId id: String) -> AnyPublisher<MovieDetailResponse, MovieError>
     func comment (forId id: String) -> AnyPublisher<CommentResponse, MovieError>
@@ -26,7 +24,6 @@ class MovieFetcher {
 
 // MARK: - fetching movies with URL
 extension MovieFetcher: MovieFetchable {
-    
     func movieSummary(forType type: Int) -> AnyPublisher<MovieSummaryResponse, MovieError> {
         return movieAPICall(with: movieSummaryCall(withType: type))
     }
@@ -54,7 +51,7 @@ extension MovieFetcher {
         static let scheme = "https://"
         static let baseURL = "connect-boxoffice.run.goorm.io"
     }
-    //connect-boxoffice.run.goorm.io/comments?id=5a54c1e9e8a71d136fb5376c
+
     func movieSummaryCall(withType type: Int) -> URL {
         let path = "/movies?order_type=\(type)"
         let currentURL = MovieAPI.scheme + MovieAPI.baseURL + path
