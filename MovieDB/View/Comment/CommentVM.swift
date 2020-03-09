@@ -21,6 +21,7 @@ class CommentVM: ObservableObject {
     }
     
     func fetchComment(forId id: String) {
+        print(id)
         movieFetcher.comment(forId: id)
             .map { $0.comments.map(CommentCellVM.init) }
         .receive(on: DispatchQueue.main)
@@ -30,7 +31,9 @@ class CommentVM: ObservableObject {
                 switch value {
                 case .failure:
                     strongSelf.dataSource = []
+                    print("Couldn't fetch comments")
                 case .finished:
+                    print("Successfully fetch comments")
                     break
                 }
             },

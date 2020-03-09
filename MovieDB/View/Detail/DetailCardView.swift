@@ -9,13 +9,15 @@
 import SwiftUI
 
 struct DetailCardView: View {
+    @ObservedObject var commentModel: CommentVM
+
     let userRating: String
     let director: String
     let genre: String
     let cast: String
     let synopsis: String
     
-    @State var commentPage = true
+    @State var commentPage = false
     
     var body: some View {
         VStack{
@@ -50,28 +52,34 @@ struct DetailCardView: View {
                     } //HStack - Director, Rating, Genre
                     .position(x: 250, y: 320)
                     HStack (spacing: 30){
-                        Button("Summary"){
+                        Button(action: {
                             withAnimation {
-                                self.commentPage.toggle()
-                            }                        }
-                        .accentColor(self.commentPage ? .black : .white)
-                        .padding(5)
-                        .background(self.commentPage ? MyColor.lightlightGray : MyColor.darkGray)
-                        .cornerRadius(10)
-                        
-                        Button("Comments"){
-                            withAnimation {
-                                self.commentPage.toggle()
+                                self.commentPage = false
                             }
-
+                        }) {
+                            Text("Summary")
+                                .modifier(GeneralText(size: 15, color: self.commentPage ? .black : .white))
+                                .padding(5)
+                                .background(self.commentPage ? MyColor.lightlightGray :     MyColor.darkGray)
+                                .cornerRadius(10)
                         }
-                        .accentColor(self.commentPage ? .white : .black)
-                        .padding(5)
-                        .background(self.commentPage ? MyColor.darkGray : MyColor.lightlightGray)
-                        .cornerRadius(10)
-                        .offset(x:5)
-
+                        
+                        Button(action: {
+                            withAnimation {
+                                self.commentPage = true
+                            }
+                        }) {
+                            Text("Comments")
+                                .modifier(GeneralText(size:15, color: self.commentPage ? .white : .black))
+                                .padding(5)
+                                .background(self.commentPage ? MyColor.darkGray : MyColor.lightlightGray)
+                                .cornerRadius(10)
+                                .offset(x:5)
+                        }
                     }
+
+
+                    
                     .position(x: 250, y: 180)
                     VStack {
                         if !self.commentPage {
@@ -89,7 +97,7 @@ struct DetailCardView: View {
                                 .padding(.horizontal, 80)
                                 .position(x: 250, y: -70)
                         } else {
-                            Text("Comment")
+                            CommentView(commentModel: self.commentModel)
                         }
                     }
                 .frame(height: 400)
@@ -99,8 +107,8 @@ struct DetailCardView: View {
     }
 }
 
-struct DetailCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailCardView(userRating: "5.5", director: "장창원", genre: "action", cast: "현빈(황지성), 유지태(박희수 검사), 배성우(고석동)", synopsis: "Hkjkjijij09j90jijoisdufmsoiadasldkfjaskldfjaslkfjasldkfjslkdfjsdlkfjsdlkfjsldkoidfdiofmoifmusdiofmasoidfdiofmasoidfdiofmasoidfiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoifdiofmoifmusdiofmasoidfdiofmasoidfdiofmasoidfiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoifdiofmoifmusdiofmasoidfdiofmasoidfdiofmasoidfiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmfdjsfjmI")
-    }
-}
+//struct DetailCardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DetailCardView(userRating: "5.5", director: "장창원", genre: "action", cast: "현빈(황지성), 유지태(박희수 검사), 배성우(고석동)", synopsis: "Hkjkjijij09j90jijoisdufmsoiadasldkfjaskldfjaslkfjasldkfjslkdfjsdlkfjsdlkfjsldkoidfdiofmoifmusdiofmasoidfdiofmasoidfdiofmasoidfiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoifdiofmoifmusdiofmasoidfdiofmasoidfdiofmasoidfiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoifdiofmoifmusdiofmasoidfdiofmasoidfdiofmasoidfiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmasoidfdiofmfdjsfjmI")
+//    }
+//}

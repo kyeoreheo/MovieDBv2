@@ -54,7 +54,7 @@ extension MovieFetcher {
         static let scheme = "https://"
         static let baseURL = "connect-boxoffice.run.goorm.io"
     }
-    
+    //connect-boxoffice.run.goorm.io/comments?id=5a54c1e9e8a71d136fb5376c
     func movieSummaryCall(withType type: Int) -> URL {
         let path = "/movies?order_type=\(type)"
         let currentURL = MovieAPI.scheme + MovieAPI.baseURL + path

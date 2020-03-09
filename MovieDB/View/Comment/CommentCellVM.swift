@@ -23,11 +23,13 @@ struct CommentCellVM {
         return String(item.contents)
     }
     
-    var tiemstamp: Int {
+    var timestamp: Double {
         return item.timestamp
     }
     
     var writer: String { item.writer }
+    
+    //var movieId: String { item.movie_id }
 //    var rating: Int
 //    var contents: String
 //    var timestamp: Int

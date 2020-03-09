@@ -9,13 +9,22 @@
 import SwiftUI
 
 struct CommentView: View {
+    @ObservedObject var commentModel: CommentVM
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+        ScrollView (showsIndicators: false) {
+            Text("\(self.commentModel.dataSource.count)")
+            ForEach(0..<commentModel.dataSource.count) {
+                //Text(self.commentModel.dataSource[$0].movieId)
+                CommentCell(wiriter: self.commentModel.dataSource[$0].writer,
+                            rating: self.commentModel.dataSource[$0].rating,
+                            timestamp: self.commentModel.dataSource[$0].timestamp,
+                            comment: self.commentModel.dataSource[$0].comment)
+            }
 
-struct CommentView_Previews: PreviewProvider {
-    static var previews: some View {
-        CommentView()
+
+
+
+        }.frame(height: 400)
     }
 }

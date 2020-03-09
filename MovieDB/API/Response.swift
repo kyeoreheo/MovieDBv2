@@ -42,12 +42,13 @@ struct MovieDetailResponse: Codable {
 }
 
 struct CommentResponse: Codable {
+    //var movie_id: String
     var comments: [Comment]
     
     struct Comment: Codable {
         var rating: Int
         var contents: String
-        var timestamp: Int
+        var timestamp: Double
         var movie_id: String
         var writer: String
         var id: String

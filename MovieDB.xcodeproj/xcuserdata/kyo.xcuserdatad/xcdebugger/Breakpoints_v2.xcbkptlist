@@ -231,15 +231,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F2624501-F2A9-429F-8AAF-8AEC9601D53B"
+            uuid = "812061F6-C7FA-43F1-B460-2ADABDF08FAE"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MovieDB/Start/ContentView.swift"
+            filePath = "MovieDB/View/Comment/CommentCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -247,16 +247,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "46260EA7-B4A7-418F-9975-49E065069B76"
+            uuid = "B30EAF26-6590-4001-9EFF-92ACDE4BA3C3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MovieDB/View/Detail/DetailView.swift"
+            filePath = "MovieDB/View/Comment/CommentVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "20"
             endingLineNumber = "20"
-            landmarkName = "init(summaryModel:detailModel:commentModel:index:)"
+            landmarkName = "init(movieFetcher:movieId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "16CBFF87-5E68-49B2-A275-1ABD9D48585D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MovieDB/View/Comment/CommentVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "fetchComment(forId:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

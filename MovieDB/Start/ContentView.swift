@@ -11,6 +11,11 @@ struct ContentView: View {
     @State var isLoading = true
     @State var showignDetail = false
     
+    @State var popularPage = true
+    @State var recommendedPage = false
+    @State var latestPage = false
+
+    
     init() {
 
         //UITabBar.appearance().backgroundColor = UIColor.black
@@ -22,41 +27,67 @@ struct ContentView: View {
              TabView {  //selection: self.$selection
                 SummaryView(viewModel: summaryVM)
                     .tabItem({Text("TableView").modifier(GeneralText(size:25))})
-                .tag("TableView")
+                    .tag("TableView")
                 
                 CollectionView(viewModel: summaryVM)
-                    .tabItem({Text("CollectionView").modifier(GeneralText(size:25))})
-                .tag("CollectionView")
-            }
+                    .tabItem({Text("CollectionView")
+                    .modifier(GeneralText(size:25))})
+                    .tag("CollectionView")
+             }
              .accentColor(Color.black)
-            .padding(.top, -60)
+             .padding(.top, -60)
+                
 
-            .navigationBarTitle("\(summaryVM.movieId.count)")
-            .navigationBarItems(trailing:
+             .navigationBarTitle("MovieDB")
+             .navigationBarItems(trailing:
                 HStack{
                     HStack {
                         Button(action: {
                             self.summaryVM.fetchSummary(forType: 0)
+
+                            withAnimation{
+                                self.popularPage = true
+                                self.recommendedPage = false
+                                self.latestPage = false
+                            }
                         }) {
                             Text("Popular")
-                                .modifier(GeneralText(color:Color.white))
+                                .modifier(GeneralText(color: self.popularPage ? .black : .white))
+                            .padding(5)
+                                .background(self.popularPage ? Color.white : MyColor.darkGray)
+                            .cornerRadius(10)
                         }
+                        
                         Button(action: {
                             self.summaryVM.fetchSummary(forType: 1)
+
+                            withAnimation{
+                                self.popularPage = false
+                                self.recommendedPage = true
+                                self.latestPage = false
+                            }
                         }) {
                             Text("Recommended")
-                            .modifier(GeneralText(color:Color.white))
+                            .modifier(GeneralText(color: self.recommendedPage ? .black : .white))
+                            .padding(5)
+                                .background(self.recommendedPage ? Color.white : MyColor.darkGray)
+                            .cornerRadius(10)
                         }
+                        
                         Button(action: {
                             self.summaryVM.fetchSummary(forType: 2)
+
+                            withAnimation{
+                                self.popularPage = false
+                                self.recommendedPage = false
+                                self.latestPage = true
+                            }
                         }) {
                             Text("Latest")
-                            .modifier(GeneralText(color:Color.white))
-                        }
-                        Button(action: {
-                            self.showignDetail.toggle()
-                        }) {
-                            Text("BTN")
+                            .modifier(GeneralText(color: self.latestPage ? .black : .white))
+                            .padding(5)
+                                .background(self.latestPage ? Color.white : MyColor.darkGray)
+                            .cornerRadius(10)
                         }
                     }
                 }

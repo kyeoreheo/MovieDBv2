@@ -11,16 +11,13 @@ import SwiftUI
 struct SummaryView: View {
     @ObservedObject var viewModel: SummaryVM
     
-    
-//    init(viewModel: SummaryVM) {
-//        self.viewModel = viewModel
-//    }
     var body: some View {
         ScrollView (showsIndicators: false){
             VStack {
                 if viewModel.dataSource.count > 0 {
                     ForEach (0..<viewModel.dataSource.count) {
-                        SummaryCell(viewModel: self.viewModel.dataSource[$0])
+                        SummaryCell(viewModel: self.viewModel.dataSource[$0], index: $0)
+                        
                     }
                 } else {
                     Text("Loading...")

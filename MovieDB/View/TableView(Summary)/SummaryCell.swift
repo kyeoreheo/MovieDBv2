@@ -9,10 +9,15 @@
 import SwiftUI
 
 struct SummaryCell: View {
+    @EnvironmentObject var currentMovie: CurrentMovie
+    //@ObservedObject var summaryVM: SummaryVM
+    let index: Int
+
     private let viewModel: SummaryCellVM
     
-    init(viewModel: SummaryCellVM) {
+    init(viewModel: SummaryCellVM, index: Int) {
         self.viewModel = viewModel
+        self.index = index
     }
     
     var body: some View {
@@ -59,6 +64,12 @@ struct SummaryCell: View {
                 .padding()
             }
         }
+        .onTapGesture {
+            self.currentMovie.movieId = self.viewModel.movieId
+            self.currentMovie.showingDetail = true
+            self.currentMovie.index = self.index
+        }
+
         .frame(width: 380, height: 180)
         .cornerRadius(10)
         .overlay(RoundedRectangle(cornerRadius: 10)
