@@ -1,13 +1,13 @@
 //
-//  StarIcon.swift
+//  RankIcon.swift
 //  MovieDB
 //
-//  Created by Kyo on 3/7/20.
+//  Created by Kyo on 3/8/20.
 //  Copyright © 2020 Kyo. All rights reserved.
 //
 import SwiftUI
 
-struct StarIcon: View {
+struct RankIcon: View {
     let number: String
     
     init(_ number: String) {
@@ -16,18 +16,18 @@ struct StarIcon: View {
     
     var body: some View {
         ZStack {
-            Image("star2")
+            Image("rank")
             .resizable()
             .frame(width: 50, height: 50)
+            .offset(y:3)
             Text(number)
             .modifier(GeneralText(size: 15))
-            .offset(y:3)
         }
     }
 }
 
-struct StarIcon_Previews: PreviewProvider {
+struct RankIcon_Previews: PreviewProvider {
     static var previews: some View {
-        StarIcon("6.6")
+        RankIcon("1")
     }
 }

@@ -5,12 +5,12 @@
 //  Created by Kyo on 3/7/20.
 //  Copyright © 2020 Kyo. All rights reserved.
 //
-
 import SwiftUI
 
 struct GradeIconView: View {
     let grade: String
     let circleColor: Color
+    
     init(grade: String) {
         self.grade = grade
         if grade == "15" {

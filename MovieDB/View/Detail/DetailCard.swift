@@ -9,15 +9,21 @@
 import SwiftUI
 
 struct DetailCard: View {
-    private let viewModel: DetailCardVM
+    @ObservedObject var viewModel: DetailVM
+    @ObservedObject var supportModel: SummaryVM
+    let index: Int
     
-    
-    init(viewModel: DetailCardVM) {
-        self.viewModel = viewModel
-        
+    init(viewModle: DetailVM, supportModel: SummaryVM, index: Int) {
+        self.viewModel = DetailVM(movieFetcher: MovieFetcher(), movieId: supportModel.movieId[index])
+        self.supportModel = supportModel
+        self.index = index
     }
     
     var body: some View {
-        Text("\(self.viewModel.audience ?? "N/A")")
+        VStack {
+            Text("HI")
+        }
     }
 }
+
+

@@ -1,80 +1,109 @@
+//
+//  SummaryModel.swift
+//  MovieDB
+//
+//  Created by Kyo on 3/6/20.
+//  Copyright © 2020 Kyo. All rights reserved.
+//
 import SwiftUI
 
 struct ContentView: View {
-    let fetcher = MovieFetcher()
     @EnvironmentObject var summaryVM: SummaryVM
-    //@ObservedObject var summaryVM: SummaryVM
     @EnvironmentObject var detailVM: DetailVM
+    @EnvironmentObject var commentVM: CommentVM
+    @EnvironmentObject var currentMovie: CurrentMovie
     
     @State var section = 0
     @State var isLoading = true
+    @State var showignDetail = false
     
+    @State var popularPage = true
+    @State var recommendedPage = false
+    @State var latestPage = false
+
     init() {
-
-
+        
     }
-
     
     var body: some View {
         NavigationView {
-            if self.detailVM.movieId.count == 0 && self.summaryVM.movieId.count > 0{
-                    Text("").opacity(0).onAppear(perform: {
-                        self.detailVM.movieId = self.summaryVM.movieId
-                    })
-                
-            }
-//            if isLoading {
-//            Text("Loading\(detailVM.movieId.count)")
-//                .onAppear(perform: {
-//                    self.summaryVM.fetchSummary(forType: 0)
-//                    withAnimation {
-//                        self.isLoading.toggle()
-//                    }
-//                })
-//            }
-             TabView {  //selection: self.$selection
+             TabView {
                 SummaryView(viewModel: summaryVM)
-                .tabItem({Text("TableView")})
-                .tag("TableView")
-////
-                DetailView(viewModel: detailVM)
-                .tabItem({Text("Detail")})
-                .tag("Dtail")
-//
-//                SummaryView(viewModel: summaryVM)
-//                .tabItem({Text("TableView")})
-//                .tag("TableView")
-            }
-            .padding(.top, -60)
-
-            .navigationBarTitle("\(summaryVM.movieId.count)")
-            .navigationBarItems(trailing:
+                    .tabItem({Text("TableView").modifier(GeneralText(size:25))})
+                    .tag("TableView")
+                
+                CollectionView(viewModel: summaryVM)
+                    .tabItem({Text("CollectionView")
+                    .modifier(GeneralText(size:25))})
+                    .tag("CollectionView")
+             }
+             .padding(.top, -60)
+             .accentColor(Color.black)
+             .navigationBarTitle("MovieDB")
+             .navigationBarItems(trailing:
                 HStack{
                     HStack {
                         Button(action: {
                             self.summaryVM.fetchSummary(forType: 0)
+
+                            withAnimation{
+                                self.popularPage = true
+                                self.recommendedPage = false
+                                self.latestPage = false
+                            }
                         }) {
                             Text("Popular")
-                                .modifier(GeneralText(color:Color.white))
+                                .padding(5)
+                                .modifier(GeneralText(color: self.popularPage ? .black : .white))
+                                .background(self.popularPage ? Color.white : MyColor.darkGray)
+                                .cornerRadius(10)
                         }
+                        
                         Button(action: {
                             self.summaryVM.fetchSummary(forType: 1)
+
+                            withAnimation{
+                                self.popularPage = false
+                                self.recommendedPage = true
+                                self.latestPage = false
+                            }
                         }) {
                             Text("Recommended")
-                            .modifier(GeneralText(color:Color.white))
+                                .padding(5)
+                                .modifier(GeneralText(color: self.recommendedPage ? .black : .white))
+                                .background(self.recommendedPage ? Color.white : MyColor.darkGray)
+                                .cornerRadius(10)
                         }
+                        
                         Button(action: {
                             self.summaryVM.fetchSummary(forType: 2)
+
+                            withAnimation{
+                                self.popularPage = false
+                                self.recommendedPage = false
+                                self.latestPage = true
+                            }
                         }) {
                             Text("Latest")
-                            .modifier(GeneralText(color:Color.white))
+                                .padding(5)
+                                .modifier(GeneralText(color: self.latestPage ? .black : .white))
+                                .background(self.latestPage ? Color.white : MyColor.darkGray)
+                                .cornerRadius(10)
                         }
                     }
                 }
             )
         }
-    .onAppear(perform: {
-        self.summaryVM.fetchSummary(forType: 0)
-    })
+        .sheet(isPresented: self.$currentMovie.showingDetail ) {
+            DetailView(summaryModel: self.summaryVM,
+                       detailModel: self.detailVM,
+                       commentModel: self.commentVM,
+                       index: self.currentMovie.index)
+                .environmentObject(self.currentMovie)
+        }
+        .onAppear(perform: {
+            // as soon as this View on screen
+            self.summaryVM.fetchSummary(forType: 0)
+        })
     }
 }

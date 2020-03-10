@@ -5,7 +5,6 @@
 //  Created by Kyo on 3/6/20.
 //  Copyright © 2020 Kyo. All rights reserved.
 //
-
 import SwiftUI
 
 struct DetailCardVM {
@@ -15,38 +14,13 @@ struct DetailCardVM {
         self.item = item
     }
     
-    var grade: String {
-        return String(item.grade)
-    }
-    
-    var cast: String {
-        return String(item.actor)
-    }
-    var userRating: String {
-        return String(item.user_rating)
-    }
-    var audience: String {
-        return String(item.audience)
-    }
-    
-    var synopsis: String {
-        return String(item.synopsis)
-    }
-    
-    var duration: Int {
-        return item.duration
-    }
-    
-    var director: String {
-        return item.director
-    }
-    
-    var genre: String {
-        return item.genre
-    }
-    
-    var releaseDate: String {
-        return item.date
-    }
-    
+    var grade: String { String(item.grade) }
+    var cast: String { String(item.actor) }
+    var userRating: String { String(item.user_rating) }
+    var audience: String { String(item.audience) }
+    var synopsis: String { String(item.synopsis) }
+    var duration: Int { item.duration }
+    var director: String { item.director }
+    var genre: String { item.genre }
+    var releaseDate: String { item.date }
 }

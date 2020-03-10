@@ -1,13 +1,13 @@
 //
-//  StarIcon.swift
+//  CriticIcon.swift
 //  MovieDB
 //
-//  Created by Kyo on 3/7/20.
+//  Created by Kyo on 3/8/20.
 //  Copyright © 2020 Kyo. All rights reserved.
 //
 import SwiftUI
 
-struct StarIcon: View {
+struct CriticIcon: View {
     let number: String
     
     init(_ number: String) {
@@ -16,9 +16,10 @@ struct StarIcon: View {
     
     var body: some View {
         ZStack {
-            Image("star2")
+            Image("critic")
             .resizable()
             .frame(width: 50, height: 50)
+                .offset(x:4, y:3)
             Text(number)
             .modifier(GeneralText(size: 15))
             .offset(y:3)
@@ -26,8 +27,8 @@ struct StarIcon: View {
     }
 }
 
-struct StarIcon_Previews: PreviewProvider {
+struct CriticIcon_Previews: PreviewProvider {
     static var previews: some View {
-        StarIcon("6.6")
+        CriticIcon("3.3")
     }
 }

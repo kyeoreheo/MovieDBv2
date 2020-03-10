@@ -9,9 +9,35 @@
 import SwiftUI
 
 struct Test2: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+    
+    @State var flag = false
+    let text = ["Hello World", """
+    So even if the text is suepr long, text height exsdlkfjsdlkfpend to boexsdlkfjsdlkfpend to boexsdlkfjsdlkfpend to boexsdlkfjsdlkfpend to boexsdlkfjsdlkfpend to boexsdlkfjsdlkfpend to boexsdlkfjsdlkfpend to boexsdlkfjsdlkfpend to boexsdlkfjsdlkfpend to boexsdlkfjsdlkfpend to boexsdlkfjsdlkfpend to bottom. not top and bottom
+    """]
+        var body: some View {
+            GeometryReader { proxy in
+                ZStack {
+                    Rectangle()
+                        .fill(Color.green)
+                        .frame(width: proxy.size.width * 0.5, height:proxy.size.height * 0.5)
+                        .offset(y: 100)
+
+                    VStack{
+                        Color.clear.frame(height: proxy.size.height / 3)
+                        Image(systemName: "star")
+                        .resizable()
+                            .frame(width: 50, height: 50).onTapGesture {
+                                self.flag.toggle()
+                        }
+                        Text(self.text[self.flag ? 0 : 1])
+                            .font(.system(size: 30))
+                            .padding()
+                        Spacer()
+                        //Color.yellow
+                    }
+                }
+            }
+        }
 }
 
 struct Test2_Previews: PreviewProvider {

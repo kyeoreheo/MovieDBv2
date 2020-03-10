@@ -5,9 +5,7 @@
 //  Created by Kyo on 3/6/20.
 //  Copyright © 2020 Kyo. All rights reserved.
 //
-
 import Foundation
-
 
 struct MovieSummaryResponse: Codable {
     var movies: [Movie]
@@ -47,7 +45,7 @@ struct CommentResponse: Codable {
     struct Comment: Codable {
         var rating: Int
         var contents: String
-        var timestamp: Int
+        var timestamp: Double
         var movie_id: String
         var writer: String
         var id: String

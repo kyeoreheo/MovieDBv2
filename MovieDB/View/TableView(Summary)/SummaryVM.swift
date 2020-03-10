@@ -5,13 +5,12 @@
 //  Created by Kyo on 3/6/20.
 //  Copyright © 2020 Kyo. All rights reserved.
 //
-
 import Foundation
 import Combine
 
 class SummaryVM: ObservableObject {
     @Published var type: Int = 0
-    @Published var dataSource: [SummaryCellVM] = []
+    @Published var dataSource: [SummaryCellVM] = [] //should rename to SummaryStructure
     @Published var movieId: [String] = []
     
     private let movieFetcher: MovieFetchable
@@ -43,11 +42,13 @@ class SummaryVM: ObservableObject {
                 guard let strongSelf = self else { return }
                 strongSelf.dataSource = result
                 strongSelf.movieIdGenerator()
-            })
-            .store(in: &disposables)
+            }
+        )
+        .store(in: &disposables)
     }
     
     func movieIdGenerator() {
+        movieId = []
         dataSource.forEach {
             movieId.append($0.movieId)
         }

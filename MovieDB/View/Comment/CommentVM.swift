@@ -1,34 +1,37 @@
 //
-//  DetailViewModel.swift
+//  CommentVM.swift
 //  MovieDB
 //
-//  Created by Kyo on 3/6/20.
+//  Created by Kyo on 3/8/20.
 //  Copyright © 2020 Kyo. All rights reserved.
 //
-import Foundation
+import SwiftUI
 import Combine
 
-class DetailVM: ObservableObject {
-    @Published var dataSource: DetailCardVM?
+class CommentVM: ObservableObject {
+    @Published var dataSource: [CommentCellVM] = []
 
     private let movieFetcher: MovieFetchable
     private var disposables = Set<AnyCancellable>()
 
     init(movieFetcher: MovieFetcher, movieId: String = "") {
         self.movieFetcher = movieFetcher
-        fetchDetail(forId: movieId)
+        fetchComment(forId: movieId)
     }
-
-    func fetchDetail(forId id: String) {
-        movieFetcher.movieDetail(forId: id)
-        .map { DetailCardVM.init(item: $0) }
+    
+    func fetchComment(forId id: String) {
+        movieFetcher.comment(forId: id)
+        .map { $0.comments.map(CommentCellVM.init) }
         .receive(on: DispatchQueue.main)
         .sink(
-            receiveCompletion: { value in
+            receiveCompletion: { [weak self] value in
+                guard let strongSelf = self else { return }
                 switch value {
                 case .failure:
-                    print("couldn't load movie")
+                    strongSelf.dataSource = []
+                    print("Couldn't fetch comments")
                 case .finished:
+                    print("Successfully fetch comments")
                     break
                 }
             },
@@ -39,5 +42,4 @@ class DetailVM: ObservableObject {
         )
         .store(in: &disposables)
     }
-
 }
