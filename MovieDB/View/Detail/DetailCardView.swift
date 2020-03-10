@@ -14,14 +14,14 @@ struct DetailCardView: View {
     
     @State var summaryPage = true
     @State var commentPage = false
-
+    
     init(viewModel: DetailCardVM?, supportModel: CommentVM) {
         self.viewModel = viewModel
         self.supportModel = supportModel
     }
     
     var body: some View {
-        VStack{
+        GeometryReader { geo in
           ZStack{
               Ellipse()
                   .fill(Color.white)
@@ -32,6 +32,7 @@ struct DetailCardView: View {
                   .offset(y: 250)
            
                 VStack {
+                    Color.clear.frame(height: geo.size.height / 2.7)
                     HStack { //HStack - Director, Rating, Genre
                         Text(self.viewModel?.director ?? "loading")
                             .modifier(GeneralText(size:15))
@@ -40,7 +41,7 @@ struct DetailCardView: View {
                             .offset(y:20)
                             .frame(width: 120, height: 50)
                     
-                        StarIcon(viewModel?.userRating ?? "0")
+                        StarIcon(self.viewModel?.userRating ?? "0")
                             .scaleEffect(1.5)
                             .frame(width: 90, height: 50)
                             .offset(y:-10)
@@ -50,8 +51,8 @@ struct DetailCardView: View {
                             .offset(y:20)
                             .modifier(GeneralText(size:12))
                             .frame(width: 120, height: 50)
-                    } //HStack - Director, Rating, Genre
-                    .position(x: 250, y: 320)
+                    }
+                    .padding(.bottom, 20)
                     
                     HStack (spacing: 30) {
                         Button(action: {
@@ -81,27 +82,26 @@ struct DetailCardView: View {
                                 .offset(x:5)
                         }
                     }
-                    .position(x: 250, y: 180)
+                    .padding(.bottom, 20)
                     
                     VStack {
                         if !self.commentPage {
-                            Text(self.viewModel?.cast ?? "loading")
+                            Text(self.viewModel?.cast ?? "loading cast")
                                 .multilineTextAlignment(.center)
                                 .modifier(GeneralText(size:15))
                                 .padding(.bottom, 10)
-                                .position(x: 250, y: 20)
+                                .padding(.horizontal, 30)
                             
-                            Text(self.viewModel?.synopsis ?? "loading")
+                            Text(self.viewModel?.synopsis ?? "loading summary")
                                 .lineLimit(nil)
                                 .minimumScaleFactor(0.01)
                                 .modifier(GeneralText(size:12))
                                 .padding(.horizontal, 80)
-                                .position(x: 250, y: -70)
                         } else {
                             CommentView(commentModel: self.supportModel)
                         }
                     }
-                    .frame(height: 400)
+                    Spacer()
                 }
             }
         }

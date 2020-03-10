@@ -5,14 +5,11 @@
 //  Created by Kyo on 3/6/20.
 //  Copyright © 2020 Kyo. All rights reserved.
 //
-
 import UIKit
 import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         let movieFetcher = MovieFetcher()
@@ -33,25 +30,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
             window.makeKeyAndVisible()
         }
-        
-        
     }
-
-    func sceneDidDisconnect(_ scene: UIScene) {
-    }
-
-    func sceneDidBecomeActive(_ scene: UIScene) {
-    }
-
-    func sceneWillResignActive(_ scene: UIScene) {
-    }
-
-    func sceneWillEnterForeground(_ scene: UIScene) {
-    }
-
-    func sceneDidEnterBackground(_ scene: UIScene) {
-    }
-
-
 }
 

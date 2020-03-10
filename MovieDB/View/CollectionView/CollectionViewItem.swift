@@ -26,14 +26,16 @@ struct CollectionViewItem: View {
                 .overlay(RoundedRectangle(cornerRadius: 10)
                 .stroke(gradeToColor(grade: self.viewModel.dataSource[index].grade), lineWidth: 6))
                 .shadow(radius: 5)
-                .frame(width: 180, height: 280)
+                .frame(width: 180, height: 280) //180
+                .scaleEffect(0.8)
+                //width * 0.36
                 .onTapGesture {
                     self.currentMovie.movieId = self.viewModel.dataSource[self.index].movieId
                     self.currentMovie.showingDetail = true
                     self.currentMovie.index = self.index
                 }
         }
-        .frame(width: 200, height: 300)
+        //.frame(width: 200, height: 300)
 
     }
     

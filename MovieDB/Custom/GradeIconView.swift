@@ -10,6 +10,7 @@ import SwiftUI
 struct GradeIconView: View {
     let grade: String
     let circleColor: Color
+    
     init(grade: String) {
         self.grade = grade
         if grade == "15" {

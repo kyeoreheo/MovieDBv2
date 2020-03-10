@@ -5,7 +5,6 @@
 //  Created by Kyo on 3/8/20.
 //  Copyright © 2020 Kyo. All rights reserved.
 //
-
 import SwiftUI
 
 struct CollectionView: View {
@@ -27,7 +26,6 @@ struct CollectionView: View {
                     }
                 }
             }
-            .padding()
         }
     }
 }

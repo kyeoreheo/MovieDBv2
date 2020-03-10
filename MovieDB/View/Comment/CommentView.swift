@@ -5,7 +5,6 @@
 //  Created by Kyo on 3/8/20.
 //  Copyright © 2020 Kyo. All rights reserved.
 //
-
 import SwiftUI
 
 struct CommentView: View {
@@ -22,6 +21,7 @@ struct CommentView: View {
                     .frame(width: 400)
                     .modifier(GeneralText())
             }
-        }.frame(height: 400)
+        }
+        .frame(height: 350)
     }
 }

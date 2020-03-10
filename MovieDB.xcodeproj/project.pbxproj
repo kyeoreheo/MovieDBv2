@@ -44,8 +44,6 @@
 		3176D511241376A5006C924B /* GodoM.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3176D50D241376A5006C924B /* GodoM.ttf */; };
 		3176D5132413803C006C924B /* StarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3176D5122413803C006C924B /* StarIcon.swift */; };
 		3176D5152413DD6B006C924B /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3176D5142413DD6B006C924B /* NavigationBar.swift */; };
-		3176D519241419AB006C924B /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3176D518241419AB006C924B /* Test.swift */; };
-		31A3F59E24141E8E008775AD /* Test2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A3F59D24141E8E008775AD /* Test2.swift */; };
 		31A3F5A12414A92C008775AD /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 31A3F5A02414A92C008775AD /* QGrid */; };
 /* End PBXBuildFile section */
 
@@ -89,8 +87,6 @@
 		3176D50D241376A5006C924B /* GodoM.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GodoM.ttf; sourceTree = "<group>"; };
 		3176D5122413803C006C924B /* StarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarIcon.swift; sourceTree = "<group>"; };
 		3176D5142413DD6B006C924B /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
-		3176D518241419AB006C924B /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
-		31A3F59D24141E8E008775AD /* Test2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,8 +184,6 @@
 				314A2AF02412ACC1008A453D /* Detail */,
 				314A2AEF2412ACB8008A453D /* TableView(Summary) */,
 				3156CD7024155BBB005BD329 /* CollectionView */,
-				3176D518241419AB006C924B /* Test.swift */,
-				31A3F59D24141E8E008775AD /* Test2.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -338,7 +332,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3156CD6D24154D58005BD329 /* CurrentMovie.swift in Sources */,
-				31A3F59E24141E8E008775AD /* Test2.swift in Sources */,
 				3156CD74241568A5005BD329 /* DetailCardView.swift in Sources */,
 				3176D4EB2412B010006C924B /* DetailCardVM.swift in Sources */,
 				3176D4FA24131D30006C924B /* SummaryVM.swift in Sources */,
@@ -359,7 +352,6 @@
 				3156CD78241575FD005BD329 /* CriticIcon.swift in Sources */,
 				3176D5132413803C006C924B /* StarIcon.swift in Sources */,
 				3176D5062413637A006C924B /* MyColor.swift in Sources */,
-				3176D519241419AB006C924B /* Test.swift in Sources */,
 				3176D50424136241006C924B /* GradeIconView.swift in Sources */,
 				3156CD69241543B6005BD329 /* CommentCellVM.swift in Sources */,
 				3156CD6524154389005BD329 /* CommentView.swift in Sources */,

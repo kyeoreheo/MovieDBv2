@@ -19,7 +19,7 @@ struct Test2: View {
                 ZStack {
                     Rectangle()
                         .fill(Color.green)
-                        .frame(height:200)
+                        .frame(width: proxy.size.width * 0.5, height:proxy.size.height * 0.5)
                         .offset(y: 100)
 
                     VStack{
