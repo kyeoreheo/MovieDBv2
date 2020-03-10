@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SummaryView: View {
-    @ObservedObject var viewModel: SummaryVM
+    @ObservedObject var viewModel: SummaryModel
     
     var body: some View {
 

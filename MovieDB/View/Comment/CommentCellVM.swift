@@ -12,7 +12,7 @@ struct CommentCellVM {
     
     init(item: CommentResponse.Comment) {
           self.item = item
-      }
+    }
     
     var rating: String { String(format: "%1.f",item.rating) }
     var comment: String { String(item.contents) }

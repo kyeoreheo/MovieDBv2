@@ -8,9 +8,9 @@
 import Foundation
 import Combine
 
-class SummaryVM: ObservableObject {
+class SummaryModel: ObservableObject {
     @Published var type: Int = 0
-    @Published var dataSource: [SummaryCellVM] = [] //should rename to SummaryStructure
+    @Published var dataSource: [SummaryCellVM] = []
     @Published var movieId: [String] = []
     
     private let movieFetcher: MovieFetchable

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CommentView: View {
-    @ObservedObject var commentModel: CommentVM
+    @ObservedObject var commentModel: CommentModel
     
     var body: some View {
         ScrollView (showsIndicators: false) {

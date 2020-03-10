@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var summaryVM: SummaryVM
-    @EnvironmentObject var detailVM: DetailVM
-    @EnvironmentObject var commentVM: CommentVM
+    @EnvironmentObject var summaryModel: SummaryModel
+    @EnvironmentObject var detailModel: DetailModel
+    @EnvironmentObject var commentModel: CommentModel
     @EnvironmentObject var currentMovie: CurrentMovie
     
     @State var section = 0
@@ -28,11 +28,11 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
              TabView {
-                SummaryView(viewModel: summaryVM)
+                SummaryView(viewModel: summaryModel)
                     .tabItem({Text("TableView").modifier(GeneralText(size:25))})
                     .tag("TableView")
                 
-                CollectionView(viewModel: summaryVM)
+                CollectionView(viewModel: summaryModel)
                     .tabItem({Text("CollectionView")
                     .modifier(GeneralText(size:25))})
                     .tag("CollectionView")
@@ -44,7 +44,7 @@ struct ContentView: View {
                 HStack{
                     HStack {
                         Button(action: {
-                            self.summaryVM.fetchSummary(forType: 0)
+                            self.summaryModel.fetchSummary(forType: 0)
 
                             withAnimation{
                                 self.popularPage = true
@@ -60,7 +60,7 @@ struct ContentView: View {
                         }
                         
                         Button(action: {
-                            self.summaryVM.fetchSummary(forType: 1)
+                            self.summaryModel.fetchSummary(forType: 1)
 
                             withAnimation{
                                 self.popularPage = false
@@ -76,7 +76,7 @@ struct ContentView: View {
                         }
                         
                         Button(action: {
-                            self.summaryVM.fetchSummary(forType: 2)
+                            self.summaryModel.fetchSummary(forType: 2)
 
                             withAnimation{
                                 self.popularPage = false
@@ -95,15 +95,15 @@ struct ContentView: View {
             )
         }
         .sheet(isPresented: self.$currentMovie.showingDetail ) {
-            DetailView(summaryModel: self.summaryVM,
-                       detailModel: self.detailVM,
-                       commentModel: self.commentVM,
+            DetailView(summaryModel: self.summaryModel,
+                       detailModel: self.detailModel,
+                       commentModel: self.commentModel,
                        index: self.currentMovie.index)
                 .environmentObject(self.currentMovie)
         }
         .onAppear(perform: {
             // as soon as this View on screen
-            self.summaryVM.fetchSummary(forType: 0)
+            self.summaryModel.fetchSummary(forType: 0)
         })
     }
 }

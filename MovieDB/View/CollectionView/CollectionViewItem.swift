@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct CollectionViewItem: View {
-    @ObservedObject var viewModel: SummaryVM
+    @ObservedObject var viewModel: SummaryModel
     
     @EnvironmentObject var currentMovie: CurrentMovie
     
     let index: Int
     
-    init(viewModel: SummaryVM, index: Int) {
+    init(viewModel: SummaryModel, index: Int) {
         self.viewModel = viewModel
         self.index = index
     }

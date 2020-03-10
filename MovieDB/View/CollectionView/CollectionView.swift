@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct CollectionView: View {
-    @EnvironmentObject var viewModel: SummaryVM
+    @EnvironmentObject var viewModel: SummaryModel
     
     @State var count: Int = 0
     
-    init(viewModel: SummaryVM) {
+    init(viewModel: SummaryModel) {
     }
     
     var body: some View {

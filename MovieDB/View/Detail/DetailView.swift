@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct DetailView: View {
-    @ObservedObject var summaryModel: SummaryVM
-    @ObservedObject var detailModel: DetailVM
-    @ObservedObject var commentModel: CommentVM
+    @ObservedObject var summaryModel: SummaryModel
+    @ObservedObject var detailModel: DetailModel
+    @ObservedObject var commentModel: CommentModel
     
     @State var onScreen = false
     
     let index: Int
     
-    init(summaryModel: SummaryVM, detailModel: DetailVM, commentModel: CommentVM, index: Int) {
+    init(summaryModel: SummaryModel, detailModel: DetailModel, commentModel: CommentModel, index: Int) {
         self.index = index
         self.summaryModel = summaryModel
         self.detailModel = detailModel
         self.commentModel = commentModel
-        self.detailModel = DetailVM(movieFetcher: MovieFetcher(), movieId: self.summaryModel.movieId[index])
-        self.commentModel = CommentVM(movieFetcher: MovieFetcher(), movieId: self.summaryModel.movieId[index])
+        self.detailModel = DetailModel(movieFetcher: MovieFetcher(), movieId: self.summaryModel.movieId[index])
+        self.commentModel = CommentModel(movieFetcher: MovieFetcher(), movieId: self.summaryModel.movieId[index])
     }
     
     var body: some View {

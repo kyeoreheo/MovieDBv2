@@ -13,9 +13,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         let movieFetcher = MovieFetcher()
-        let commentVM = CommentVM(movieFetcher: movieFetcher)
-        let summaryVM = SummaryVM(movieFetcher: movieFetcher)
-        let detailVM = DetailVM(movieFetcher: movieFetcher)
+        let commentVM = CommentModel(movieFetcher: movieFetcher)
+        let summaryVM = SummaryModel(movieFetcher: movieFetcher)
+        let detailVM = DetailModel(movieFetcher: movieFetcher)
         let currentMovie = CurrentMovie()
         
         let contentView = ContentView()

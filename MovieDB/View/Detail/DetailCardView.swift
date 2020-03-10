@@ -10,12 +10,12 @@ import SwiftUI
 struct DetailCardView: View {
     private let viewModel: DetailCardVM?
 
-    @ObservedObject var supportModel: CommentVM
+    @ObservedObject var supportModel: CommentModel
     
     @State var summaryPage = true
     @State var commentPage = false
     
-    init(viewModel: DetailCardVM?, supportModel: CommentVM) {
+    init(viewModel: DetailCardVM?, supportModel: CommentModel) {
         self.viewModel = viewModel
         self.supportModel = supportModel
     }
